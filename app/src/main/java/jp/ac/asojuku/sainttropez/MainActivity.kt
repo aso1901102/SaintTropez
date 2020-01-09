@@ -2,8 +2,10 @@ package jp.ac.asojuku.sainttropez
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -60,5 +62,23 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    //コンテキストメニューのインスタンスが生成されるときに呼ばれるメソッド
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        this.menuInflater.inflate(R.menu.context,menu);
+    }
+
+    //コンテキストメニューをタップした時のメソッド
+    override fun onContextItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId){
+
+        }
+        return super.onContextItemSelected(item)
     }
 }
