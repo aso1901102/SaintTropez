@@ -1,5 +1,7 @@
 package jp.ac.asojuku.sainttropez
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ContextMenu
@@ -77,6 +79,14 @@ class MainActivity : AppCompatActivity() {
     //コンテキストメニューをタップした時のメソッド
     override fun onContextItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId){
+            R.id.sms -> {
+                val number = ""/*送りたい番号*/
+                val uri = Uri.parse("sms:$number");
+                var intent = Intent(Intent.ACTION_VIEW)//SMSの送信アクション
+                intent.data = uri;
+                this.startActivity(intent);
+                return true
+            }
 
         }
         return super.onContextItemSelected(item)
