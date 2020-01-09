@@ -7,4 +7,8 @@
     <string name="lunch01_text">エビフライと牛ロースステーキ</string>
     <string name="dinner01">海の幸コース</string>
     <string name="dinner02_text">牛フィレ肉のセット</string>
+    <string name="sms_text">SMSで予約</string>
+    <string name="mail_text">メールで予約</string>
+    <string name="shere_text">共有する</string>
+    <string name="brows_text">Webサイトで開く</string>
 </resources>

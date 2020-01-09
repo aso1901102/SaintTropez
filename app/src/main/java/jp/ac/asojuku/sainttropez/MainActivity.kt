@@ -22,6 +22,9 @@ class MainActivity : AppCompatActivity() {
 
         //wecviewにwebページをURL指定でLoad
         webView.loadUrl("file:///android_asset/html/index.html");
+
+        //コンテキストメニューをWebViewに紐づける
+        this.registerForContextMenu(webView);
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
