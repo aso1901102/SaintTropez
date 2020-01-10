@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-
     override fun onResume() {
         super.onResume()
         //WecViewの利用
@@ -112,10 +111,7 @@ class MainActivity : AppCompatActivity() {
                     //対応するアプリが存在すればアプリを起動（今回はメールアプリ）
                     this.startActivity(intent);
                 }
-
             }
-
-
         }
         return super.onContextItemSelected(item)
     }
