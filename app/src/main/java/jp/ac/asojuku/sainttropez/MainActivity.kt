@@ -79,6 +79,7 @@ class MainActivity : AppCompatActivity() {
     //コンテキストメニューをタップした時のメソッド
     override fun onContextItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId){
+            //SMS送信する
             R.id.sms -> {
                 val number = ""/*送りたい番号*/
                 val uri = Uri.parse("sms:$number");
@@ -87,6 +88,33 @@ class MainActivity : AppCompatActivity() {
                 this.startActivity(intent);
                 return true
             }
+            //メール送信する
+            R.id.mail -> {
+                val email = "1901102@s.asojuku.ac.jp";       //送信先メールアドレスを定数で定義
+                val subject = "予約問い合わせ";                 //件名
+                val text = "以下の通り予約希望します。";         //本文の冒頭文字列
+                val uri = Uri.parse("mailto:")  //URIとしてメール送信のプロトコルを指定
+                //メール送信のアクションを指定したインテントを生成
+                val intent = Intent(Intent.ACTION_SENDTO)
+                //暗黙のインテントとしてdataとextraを追加
+                //dataにURI（プロトコル）を設定
+                intent.data = uri;
+                //キーワードと値を指定しておまけデータ（Extra）を設定
+                //メールアドレスは複数の可能性があるので配列にする
+                intent.putExtra(Intent.EXTRA_EMAIL,arrayOf(email))
+                        //メソッドチェーンで続けて件名のキーワードと値を設定
+                      .putExtra(Intent.EXTRA_SUBJECT,subject)
+                        //文章のキーワードと値を設定
+                      .putExtra(Intent.EXTRA_TEXT,text);
+
+                //アクションに対応するアプリが存在するか判定（今回はメールアプリの有無）
+                if(intent.resolveActivity(this.packageManager) != null){
+                    //対応するアプリが存在すればアプリを起動（今回はメールアプリ）
+                    this.startActivity(intent);
+                }
+
+            }
+
 
         }
         return super.onContextItemSelected(item)
