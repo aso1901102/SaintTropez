@@ -111,7 +111,39 @@ class MainActivity : AppCompatActivity() {
                     //対応するアプリが存在すればアプリを起動（今回はメールアプリ）
                     this.startActivity(intent);
                 }
+                return true;
             }
+
+            //共有するとき
+            R.id.shere -> {
+                val text = "おいしいレストランを紹介します。";    //共有する文字列
+                val intent = Intent(Intent.ACTION_SEND)         //共有するときのアクションを設定
+                intent.type = "text/plain";                     //プレーン文字列として共有
+                //インテントのおまけ情報（Extra）に共有文字列を設定
+                intent.putExtra(Intent.EXTRA_TEXT,text);
+                //共有方法をユーザーに選択させるためのインテント（chooser）を用意する
+                val chooser = Intent.createChooser(intent,null);
+
+                if(intent.resolveActivity(this.packageManager) != null){
+                    //chooserの起動
+                    this.startActivity(intent);
+                }
+                return true;
+            }
+
+            //ウェブサイトで開くとき
+            R.id.brows -> {
+                val url ="https://www.yahoo.co.jp";         //開きたいサイトのURL
+                val intent = Intent(Intent.ACTION_VIEW)     //プラウザのアクション
+                //ブラウザを開くためのプロトコルを指定
+                intent.data = Uri.parse(url);               //httpプロトコルとして設定
+                if(intent.resolveActivity(this.packageManager) != null){
+                    //ブラウザを起動
+                    this.startActivity(intent)
+                }
+                return true;
+            }
+
         }
         return super.onContextItemSelected(item)
     }
